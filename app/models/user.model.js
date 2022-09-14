@@ -1,9 +1,10 @@
 const db = require('../config/db.config');
+var bcrypt = require("bcryptjs");
 
 class Users {
   constructor(email, password, name, username){
     this.email = email;
-    this.password = password;
+     this.password = bcrypt.hashSync(password, 8)
     this.name = name
     this.username = username
   }
@@ -31,6 +32,16 @@ class Users {
       '${createdAt}'
     )
     `;
+    return db.execute(sql);
+  }
+
+  static searchIfEmailExits(email){
+    let sql = `SELECT * from users where email = '${email}';`
+    return db.execute(sql);
+  }
+
+  static searchIfUsernameExits(username){
+    let sql = `SELECT * from users where username = '${username}';`
     return db.execute(sql);
   }
 

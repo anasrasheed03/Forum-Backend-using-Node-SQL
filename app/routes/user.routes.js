@@ -1,4 +1,6 @@
 const controller = require("../controllers/user.controller");
+const { verifySignUp } = require("../middlewares");
+
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -9,6 +11,13 @@ module.exports = function(app) {
     next();
   });
 
-  app.post("/api/register", controller.CreateUser);
+  app.post("/api/register", 
+  [
+    verifySignUp.checkDuplicateUsernameOrEmail,
+  ]
+  ,controller.CreateUser);
+
+  app.post("/api/signin", controller.signin);
+
 
 };

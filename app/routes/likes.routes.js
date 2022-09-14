@@ -1,4 +1,5 @@
 const controller = require("../controllers/likes.controller");
+const { authJwt } = require("../middlewares");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -7,12 +8,14 @@ module.exports = function (app) {
 
   app.post(
     "/api/like",
+    [authJwt.verifyToken],
     controller.SaveLike
   );
 
 
   app.get(
     "/api/removeLike/:id",
+    [authJwt.verifyToken],
     controller.UnLike
   );
 
