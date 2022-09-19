@@ -5,7 +5,6 @@ exports.CreatePost = async(req, res) => {
   try{  
   let post = new Posts(req.body.title,req.body.body,req.body.createdBy);
     post = await post.save();
-    console.log(post)
     res.send({ message: "Post Created successfully!" });
   }catch(e){
     console.log(e);

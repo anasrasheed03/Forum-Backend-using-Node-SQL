@@ -5,7 +5,6 @@ exports.SaveComment = async(req, res) => {
   try{  
   let comment = new Comments(req.body.comment,req.body.postId,req.body.createdBy);
   comment = await comment.save();
-    console.log(comment)
     res.send({ message: "Comment saved successfully!" });
   }catch(e){
     console.log(e);
@@ -18,7 +17,6 @@ exports.SaveComment = async(req, res) => {
   exports.UpdateComment = async(req, res) => {
     try{  
     let comment = await Comments.edit(req.body.comment, req.body.postId, req.body.id);
-      console.log(comment)
       res.send({ message: "Comment updated successfully!" });
     }catch(e){
       console.log(e);

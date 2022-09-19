@@ -5,7 +5,6 @@ exports.SaveLike = async (req, res) => {
     try {
         let like = new Likes(req.body.postId, req.body.createdBy);
         like = await like.save();
-        console.log(like)
         res.send({ message: "like saved successfully!" });
     } catch (e) {
         console.log(e);

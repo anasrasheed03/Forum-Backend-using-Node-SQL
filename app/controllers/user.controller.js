@@ -6,10 +6,8 @@ var bcrypt = require("bcryptjs");
 
 exports.CreateUser = async (req, res) => {
   try {
-    console.log(req.body)
     let user = new Users(req.body.email, req.body.password, req.body.name, req.body.username);
     user = await user.save();
-    console.log(user)
     res.send({ message: "user created successfully!" });
   } catch (e) {
     console.log(e);
@@ -21,13 +19,11 @@ exports.CreateUser = async (req, res) => {
 
 
 exports.signin = async (req, res) => {
-  console.log(req)
   const [email, _] = await Users.searchIfEmailExits(req.body.email);
   if (email.length == 0) {
     return res.status(404).send({ message: "User Not found." });
   } else {
     let user = email[0];
-    console.log(user)
     var passwordIsValid = bcrypt.compareSync(
       req.body.password,
       user.password

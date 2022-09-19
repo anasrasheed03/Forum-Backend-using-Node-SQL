@@ -34,7 +34,7 @@ class Posts {
   }
 
   static getAllPosts(){
-    let sql = "SELECT * from posts where activeInd = 1;"
+    let sql = "SELECT * from posts where activeInd = 1 order by 1 desc;"
     return db.execute(sql);
   }
 
