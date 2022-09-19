@@ -31,7 +31,7 @@ CREATE TABLE `forum`.`users` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(255) NOT NULL,
   `createdAt` DATE NOT NULL,
   PRIMARY KEY (`id`));
 
@@ -40,7 +40,7 @@ CREATE TABLE `forum`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `comment` TEXT NOT NULL,
   `createdAt` DATETIME NOT NULL,
-  `createdBy` VARCHAR(45) NOT NULL,
+  `createdBy` VARCHAR(255) NOT NULL,
   `activeInd` TINYINT NOT NULL,
   `modifiedAt` DATE NULL,
   `postId` INT NOT NULL,
@@ -52,7 +52,7 @@ likes table query:
 CREATE TABLE `forum`.`likes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `postId` INT NULL,
-  `createdBy` VARCHAR(45) NULL,
+  `createdBy` VARCHAR(255) NULL,
   `createdAt` DATE NULL,
   `activeInd` TINYINT NULL,
   PRIMARY KEY (`id`),
@@ -65,3 +65,11 @@ ALTER TABLE forum.comments ADD CONSTRAINT `FK_comments_postid` FOREIGN KEY (`pos
 Foreign key contrain/FK Relation between Post and Likes
 ALTER TABLE forum.likes ADD CONSTRAINT `FK_likes_postid` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`);
 
+Foreign key contrain/FK Relation between Post and Users
+ALTER TABLE forum.posts ADD CONSTRAINT `FK_posts_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);
+
+Foreign key contrain/FK Relation between Likes and Users
+ALTER TABLE forum.likes ADD CONSTRAINT `FK_likes_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);
+
+Foreign key contrain/FK Relation between Comments and Users
+ALTER TABLE forum.comments ADD CONSTRAINT `FK_comments_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);
