@@ -1,19 +1,19 @@
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const app = express();
-
+//cors handler
 var corsOptions = {
-  origin: "http://localhost:8000/"
+  origin: "*"
 };
 
-app.use(cors());
+app.use(cors({corsOptions}));
 app.use(bodyParser.json({ limit: "200mb" }));
 
-// simple route
+// // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to forum application." });
+  res.json({ message: "Welcome to hotel toolkit forum application." });
 });
 
 // routes

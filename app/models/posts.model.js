@@ -58,6 +58,20 @@ class Posts {
     WHERE id = '${id}';`;
     return db.execute(sql);
   }
+
+  static deletePost(id){
+    let d = new Date();
+    let yyyy = d.getFullYear();
+    let mm = d.getMonth()+1;
+    let dd = d.getDate();
+    let modifiedAt = `${yyyy}-${mm}-${dd}`;
+    let sql = `
+    UPDATE posts
+    SET activeInd = 0,
+    modifiedAt = '${modifiedAt}'
+    WHERE id = '${id}';`;
+    return db.execute(sql);
+  }
 }
 
 module.exports = Posts;

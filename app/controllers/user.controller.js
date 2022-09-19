@@ -21,6 +21,7 @@ exports.CreateUser = async (req, res) => {
 
 
 exports.signin = async (req, res) => {
+  console.log(req)
   const [email, _] = await Users.searchIfEmailExits(req.body.email);
   if (email.length == 0) {
     return res.status(404).send({ message: "User Not found." });

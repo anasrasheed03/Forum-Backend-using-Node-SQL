@@ -51,4 +51,15 @@ exports.CreatePost = async(req, res) => {
    }
   };
 
+  exports.DeletePost = async (req, res) => {
+    try{
+      const post= await Posts.deletePost(req.params.id);
+      res.send({ message: "Post deleted successfully!" });
+    }catch(e){
+      console.log(e);
+      res.status(500).json({
+        message:"something went wrong!"
+      });
+    }
+  };
 
