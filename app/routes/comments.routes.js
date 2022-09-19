@@ -6,8 +6,6 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
-server.listen(8082)
-
 // socket io
 io.on('connection', function (socket) {
   socket.on('newdata', function (data) {
