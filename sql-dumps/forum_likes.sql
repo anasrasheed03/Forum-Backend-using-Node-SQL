@@ -25,15 +25,16 @@ DROP TABLE IF EXISTS `likes`;
 CREATE TABLE `likes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `postId` int NOT NULL,
-  `createdBy` varchar(255) COLLATE utf8mb4_0900_as_ci NOT NULL,
+  `createdBy` varchar(255) NOT NULL,
   `createdAt` date NOT NULL,
   `activeInd` tinyint NOT NULL,
   `modifiedAt` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `FK_likes_postid` (`postId`),
-  CONSTRAINT `FK_likes_postid` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci;
+  KEY `FK_likes_username` (`createdBy`),
+  CONSTRAINT `FK_likes_postid` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`),
+  CONSTRAINT `FK_likes_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (1,1,'testPostman','2022-09-13',0,'2022-09-18'),(2,1,'testPostman1','2022-09-18',1,NULL),(3,1,'testPostman2','2022-09-18',1,NULL),(4,1,'testPostman6','2022-09-18',0,'2022-09-18'),(5,1,'testPostman6','2022-09-18',0,'2022-09-18'),(6,1,'testPostman6','2022-09-18',0,'2022-09-18'),(7,1,'testPostman6','2022-09-18',0,'2022-09-18'),(8,6,'testPostman6','2022-09-19',0,'2022-09-19'),(9,6,'testPostman6','2022-09-19',0,'2022-09-19'),(10,1,'testPostman6','2022-09-19',0,'2022-09-19'),(11,1,'testPostman6','2022-09-19',0,'2022-09-19'),(12,6,'testPostman6','2022-09-19',0,'2022-09-19'),(13,7,'testPostman6','2022-09-19',1,NULL);
+INSERT INTO `likes` VALUES (1,6,'testPostman6','2022-09-20',1,NULL),(2,2,'testPostman6','2022-09-20',1,NULL),(3,1,'testPostman6','2022-09-20',1,NULL);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-19 17:46:56
+-- Dump completed on 2022-09-20 12:06:39

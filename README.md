@@ -49,14 +49,14 @@ CREATE TABLE `forum`.`comments` (
 
 
 likes table query:
-CREATE TABLE `forum`.`likes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `postId` INT NULL,
-  `createdBy` VARCHAR(255) NULL,
-  `createdAt` DATE NULL,
-  `activeInd` TINYINT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE forum.`likes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `postId` int NOT NULL,
+  `createdBy` varchar(255) NOT NULL,
+  `createdAt` date NOT NULL,
+  `activeInd` tinyint NOT NULL,
+  `modifiedAt` date DEFAULT NULL,
+  PRIMARY KEY (`id`));
 
 
 Foreign key contrain/FK Relation between Post and Comments
@@ -65,3 +65,11 @@ ALTER TABLE forum.comments ADD CONSTRAINT `FK_comments_postid` FOREIGN KEY (`pos
 Foreign key contrain/FK Relation between Post and Likes
 ALTER TABLE forum.likes ADD CONSTRAINT `FK_likes_postid` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`);
 
+Foreign key contrain/FK Relation between Post and Users
+ALTER TABLE forum.posts ADD CONSTRAINT `FK_posts_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);
+
+Foreign key contrain/FK Relation between Likes and Users
+ALTER TABLE forum.likes ADD CONSTRAINT `FK_likes_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);
+
+Foreign key contrain/FK Relation between Comments and Users
+ALTER TABLE forum.comments ADD CONSTRAINT `FK_comments_username` FOREIGN KEY (`createdBy`) REFERENCES `users` (`username`);

@@ -29,7 +29,8 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `username` varchar(255) NOT NULL,
   `createdAt` date NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +40,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'testemail@test.com','password1234','Test User','testPostman','2022-09-13'),(2,'testemail1@test.com','password1234','Test User','testPostman1','2022-09-14'),(3,'testemail2@test.com','password1234','Test User','testPostman2','2022-09-14'),(4,'testemail1@test.com','password1234','Test User','testPostman1','2022-09-14'),(5,'testemail2@test.com','password1234','Test User','testPostman3','2022-09-14'),(6,'testemail5@test.com','password1234','Test User','testPostman4','2022-09-14'),(7,'testemail6@test.com','$2a$08$WFDiK.NDiRxXm8dH1ATQdurP1D5pSPiJ94tHkTz4du6uto.iQauhW','Test User','testPostman6','2022-09-14'),(8,'anas.test1@testemail.com','$2a$08$B2246aIPEKFDc.vCa6Pnue8CXeO5uo1nGVLpH5wB.wYHsBQ/1hmU2','Anas ur Rasheed','anasTest1','2022-09-15'),(9,'crypto.0333@gmail.com','$2a$08$luMZlvHI8ABBK2ptdtxiOezKxfnvdflJrmdcvW9.wi.w2ehq4fGXq','Anas Test','crypto033','2022-09-15'),(10,'abcuser@hotmail.com','$2a$08$CdrlN/HX/4K9bqivkKKAxOGFDQ5DUjMr0ZYgSSh048ng4UEo/aso2','undefined','testabc1','2022-09-15'),(11,'anastestabc@test.com','$2a$08$PiIFOhjsjJG.ABzjGix/9uubw72JHNplc4AjX074Ve.hXl2JFMzGq','undefined','testinguser','2022-09-15');
+INSERT INTO `users` VALUES (1,'testemail@test.com','password1234','Test User','testPostman','2022-09-13'),(2,'testemail1@test.com','password1234','Test User','testPostman1','2022-09-14'),(3,'testemail2@test.com','password1234','Test User','testPostman2','2022-09-14'),(4,'testemail1@test.com','password1234','Test User','testPostman1a','2022-09-14'),(5,'testemail2@test.com','password1234','Test User','testPostman3','2022-09-14'),(6,'testemail5@test.com','password1234','Test User','testPostman4','2022-09-14'),(7,'testemail6@test.com','$2a$08$WFDiK.NDiRxXm8dH1ATQdurP1D5pSPiJ94tHkTz4du6uto.iQauhW','Test User','testPostman6','2022-09-14'),(8,'anas.test1@testemail.com','$2a$08$B2246aIPEKFDc.vCa6Pnue8CXeO5uo1nGVLpH5wB.wYHsBQ/1hmU2','Anas ur Rasheed','anasTest1','2022-09-15'),(9,'crypto.0333@gmail.com','$2a$08$luMZlvHI8ABBK2ptdtxiOezKxfnvdflJrmdcvW9.wi.w2ehq4fGXq','Anas Test','crypto033','2022-09-15'),(10,'abcuser@hotmail.com','$2a$08$CdrlN/HX/4K9bqivkKKAxOGFDQ5DUjMr0ZYgSSh048ng4UEo/aso2','undefined','testabc1','2022-09-15'),(11,'anastestabc@test.com','$2a$08$PiIFOhjsjJG.ABzjGix/9uubw72JHNplc4AjX074Ve.hXl2JFMzGq','undefined','testinguser','2022-09-15');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-19 17:46:56
+-- Dump completed on 2022-09-20 12:06:39
